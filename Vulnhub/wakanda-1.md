@@ -1,6 +1,6 @@
 # VULNHUB WAKANDA 1
 
-![resim|512x397,20%](/Vulnhub/resimler/wakanda-1/wakanda-1.png)
+![resim](/Vulnhub/resimler/wakanda-1/wakanda-1.png)
 
 Bu yazımda bulnhub daki [wakanda](https://www.vulnhub.com/entry/wakanda-1,251/) 1 makinesini çözeceğiz. Makineyi indirip virtualbox'a kurduktan sonra ip adresi keşfi ile başlıyoruz.
 
