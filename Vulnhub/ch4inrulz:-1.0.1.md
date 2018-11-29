@@ -1,6 +1,6 @@
 # ch4inrulz: 1.0.1 WRITEUP
 
-Merhabalar bu yazımda [ch4inrulz: 1.0.1](https://www.vulnhub.com/entry/ch4inrulz-101,247/) makinesimi patlatacağız.
+Merhabalar. Bu yazımda vulnhub daki [ch4inrulz: 1.0.1](https://www.vulnhub.com/entry/ch4inrulz-101,247/) makinesimi patlatacağız.
 
 ## IP Adresi Keşfi
 
