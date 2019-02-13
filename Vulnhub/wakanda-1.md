@@ -1,6 +1,6 @@
 # VULNHUB WAKANDA 1
 
-![resim](/Vulnhub/resimler/wakanda-1/wakanda-1.png)
+![resim](/assets/vulnhub/wakanda-1/wakanda-1.png)
 
 Bu yazımda bulnhub daki [wakanda](https://www.vulnhub.com/entry/wakanda-1,251/) 1 makinesini çözeceğiz. Makineyi indirip virtualbox'a kurduktan sonra ip adresi keşfi ile başlıyoruz.
 
@@ -88,7 +88,7 @@ Artık saklı dizinler ile ilgili daha fazla bilgimiz var.
 
 ## Web Sitesi Üzerinde Gezinti
 
-![resim](/Vulnhub/resimler/wakanda-1/wakanda-2.png)
+![resim](/assets/vulnhub/wakanda-1/wakanda-2.png)
 
 Siteyi ve sitenin kaynak kodunu incelediğimizde ilginç bi şey farkediyoruz.
 
@@ -129,7 +129,7 @@ include($_GET['lang'].".php");
 ?>
 ```
 
-![resim](/Vulnhub/resimler/wakanda-1/wakanda-3.png)
+![resim](/assets/vulnhub/wakanda-1/wakanda-3.png)
 
 Bingoo. İşte bir parola. Bu muhtemelen `mamadou` kullanıcısının parolası. Çünkü web sayfasının altında `made by @mamadou` diye bir yazı vardı.
 

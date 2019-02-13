@@ -126,7 +126,7 @@ Fakat girdikten sonra içinde hiç bir şey olamdığını gördüm ve diğer po
 
 80 ve 8011 portlarından web servisi yayınlandığını biliyordum. Hemen tarayıcıdan ne var ne yok araştırmaya başladım.
 
-![ch4inrulz-1](/Vulnhub/resimler/ch4inrulz:-1.0.1/ch4inrulz-1.png)
+![ch4inrulz-1](/assets/vulnhub/ch4inrulz:-1.0.1/ch4inrulz-1.png)
 
 Basit bir cv sitesi. Kanak kodunu inceledikten sonrada bir şey çıkmadı. Ardından siteye `dirb` atmaya karar verdim.
 
@@ -226,7 +226,7 @@ Sayfayı açtığımızda yeni sayfalar için dosya isimleri ile karşılaşıyo
 
 files_api sayfasına girdiğimde bana `file` parametresinin girilmediğini söylüyor. Ben de hemen url üzerinden `?file=/etc/passwd` denediğimde beni güzel bir espri ile karşılıyor :)
 
-![ch4inrulz-2](/Vulnhub/resimler/ch4inrulz:-1.0.1/ch4inrulz-2.png)
+![ch4inrulz-2](/assets/vulnhub/ch4inrulz:-1.0.1/ch4inrulz-2.png)
 
 Bende burada Local File Inclusion açığının bulunduğunu düşünerek [buradaki github sayfasındaki](https://github.com/lucyoa/ctf-wiki/tree/master/web/file-inclusion) tüm yöntemleri denedim. Buradan bir sonuca ulaşamadım.
 
@@ -343,7 +343,7 @@ frank:$apr1$1oIGDEDK$/aVFPluYt56UvslZMBDoC0
 
 `frank:$apr1$1oIGDEDK$/aVFPluYt56UvslZMBDoC0` satırını bir dosyaya kaydettikten sonra dosyayı johnny ile açıyoruz. ardından şifre kırma işlemini başlatmamız yeterli.
 
-![ch4inrulz-3](/Vulnhub/resimler/ch4inrulz:-1.0.1/ch4inrulz-3.png)
+![ch4inrulz-3](/assets/vulnhub/ch4inrulz:-1.0.1/ch4inrulz-3.png)
 
 Artık frank kullanıcısının şifresini biliyoruz. `frank!!!` O zaman "development" sayfasına giriş yapabiliriz.
 

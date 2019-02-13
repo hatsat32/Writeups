@@ -8,11 +8,11 @@ Soruda verilen b1.txt dosyasını indirip açtığımızda bir şey anlayamıyor
 
 `file b1.txt`
 
-![hackthis-basic-1a](/HackThis/resimler/hackthis-basic-1a.png)
+![hackthis-basic-1a](/assets/hackthis/hackthis-basic-1a.png)
 
 Buradan dosyanın aslında resim dosyası olduğunu ve uzantısının değiştirildiğini görebiliyoruz. Uzantısını .jpg olarak değiştirdikten sonra:
 
-![hackthis-basic-1b](/HackThis/resimler/hackthis-basic-1b.jpg)
+![hackthis-basic-1b](/assets/hackthis/hackthis-basic-1b.jpg)
 
 işte bu kadar.
 
@@ -30,7 +30,7 @@ Peki user-agent ne demek? User-agent web sitelerinin bizim tarayıcımızı, tar
 
 Gelelim asıl soruya. Bu user-agert i nasıl değiştireceğiz? Chrome dan F12 yi tuşlayarak geliştirici konsolunu açıyoruz. Seçenekler(yani üç nokta işareti)->more tools-> network conditions. Gelen pencereden User-agent i değiştirebiliriz.
 
-![hackthis-basic-2](/HackThis/resimler/hackthis-basic-2.png)
+![hackthis-basic-2](/assets/hackthis/hackthis-basic-2.png)
 
 ## Level 3
 
@@ -44,9 +44,9 @@ Bu seviyede bizden post motodundaki veriyi (score) değiştirmemizi istiyor. Bun
 
 Tamper data eklentisini açıyoruz. start temper dedikten hemen sonra submit butonuna basıyoruz. Tam bu esnada bir pencere açılacak. Submit butonunun POST metod verisi. İşte buradan "score" değerini 194175 olarak değiştirip onalıyoruz. Daha sonra stop temper diyerek programı kapatıyoruz. Kısaca POST metodundaki veriyi değiştirdik. İşte bu kadar.
 
-![hackthis-basic-3a](/HackThis/resimler/hackthis-basic-3a.png)
+![hackthis-basic-3a](/assets/hackthis/hackthis-basic-3a.png)
 
-![hackthis-basic-3b](/HackThis/resimler/hackthis-basic-3b.png)
+![hackthis-basic-3b](/assets/hackthis/hackthis-basic-3b.png)
 
 ## Level 4
 
@@ -54,7 +54,7 @@ Soruda bize bir resim ve ipucu olarakda "bir resim görünmeyen bir çok bilgi t
 
 Ben [METAPİCZ][1] sitesini kullandım. Resmi yükleyip analiz ettirdikten sonra şifreye kolayca ulaşabiliyorsunuz. Artist ve Autor comment bölümleri!
 
-![hackthis-basic-4](/HackThis/resimler/hackthis-basic-4.png)
+![hackthis-basic-4](/assets/hackthis/hackthis-basic-4.png)
 
 `Artist: james` ve `UserComment: I like chocolate` verilerinden user:`james` password:`chocolate` olduğunu hemen anlıyoruz.
 
@@ -64,7 +64,7 @@ Yine bir resim. Aynı siteden metadatasına baktığımızda işe yarar profil b
 
 O zaman resim dosyasını farklı bir yolla açacağız. Metin editorü ile. notepad++ ile. Dosyayı açtıktan sonra yazıları incelersek bazı kısımları okuyabiliriz. Resmin en sonunda user-pass bilgileri yazıyor. CTRL+F ile aratarak daha hızlı bulabilirsiniz. Buradan username:`admin` password:`safe` olduğunu görüyoruz.
 
-![hackthis-basic-5](/HackThis/resimler/hackthis-basic-5.png)
+![hackthis-basic-5](/assets/hackthis/hackthis-basic-5.png)
 
 ## Level 6
 
@@ -74,11 +74,11 @@ X-B6-Key mail içerisinde gönderilen eşsiz (unique) bir bilgidir. Bu bilgiyi k
 
 Şimdi www.hackthis.co.uk adresine ping atıyorum ve whois ile sorguluyorum. Ardından bana üye olduğum zaman gelen onay mailini inceliyorum.
 
-![hackthis-basic-6a](/HackThis/resimler/hackthis-basic-6a.png)
+![hackthis-basic-6a](/assets/hackthis/hackthis-basic-6a.png)
 
-![hackthis-basic-6b](/HackThis/resimler/hackthis-basic-6b.png)
+![hackthis-basic-6b](/assets/hackthis/hackthis-basic-6b.png)
 
-![hackthis-basic-6c](/HackThis/resimler/hackthis-basic-6c.png)
+![hackthis-basic-6c](/assets/hackthis/hackthis-basic-6c.png)
 
 Elbette mailde kişisel bilgilerimin olduğu alanlar silik :)
 
@@ -100,11 +100,11 @@ Nmap bir sunucuyu (yada bilgisayarı) taramak için kullanılan en bilindik prog
 
 `nmap -p 1-65535 -T4 -A -v www.hackthis.co.uk` komutu ile linux sistemlerde nmap taramasını yapabilirsiniz. Ayrıca zenmap kullanarakta aynı taramayı yapabilirsiniz. Ayrıca zenmap kullanması daha kolay.
 
-![hackthis-basic-7a](/HackThis/resimler/hackthis-basic-7a.png)
+![hackthis-basic-7a](/assets/hackthis/hackthis-basic-7a.png)
 
 Tarama tamam. şimdi hedef porta bağlanmamız gerekiyor. Bunun için netcat (kısaca nc) programını kullanabiliriz. `netcat www.hackthis.co.uk 6776` Ardından bize şifreyi verecek:
 
-![hackthis-basic-7b](/HackThis/resimler/hackthis-basic-7b.png)
+![hackthis-basic-7b](/assets/hackthis/hackthis-basic-7b.png)
 
 `Welcome weary traveller. I believe you are looking for this: mapthat`
 

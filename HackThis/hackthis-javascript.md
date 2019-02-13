@@ -21,7 +21,7 @@ Buradan corrent değerinin `jrules` olduğunu anlıyoruz.
 
 Yada diğer bir yöntem ise javascript konsolundan değeri yazdırmak. Aşağıdaki gibi.
 
-![hackthis-javascript-1](/HackThis/resimler/hackthis-javascript-1.png)
+![hackthis-javascript-1](/assets/hackthis/hackthis-javascript-1.png)
 
 ## Level 2
 
@@ -52,7 +52,7 @@ Bizim girdiğimiz inputun uzunluğu "length" değerine eşit olması gerekiyor. 
 
 Bu işlemleri ellede yapabilirsiniz fakat hiç gerek yok. Doğrudan javascritp konsolundan yazdırmak daha kolay.
 
-![hackthis-javascript-2](/HackThis/resimler/hackthis-javascript-2.png)
+![hackthis-javascript-2](/assets/hackthis/hackthis-javascript-2.png)
 
 Ben bu seviyeyi geçtiğimde konsoldan yazdırmayı bilmediğim için işlemleri tek tek javascript idesi üzerinden yapıp sonucu bulmuştum fakat siz öyle yapmayın.
 
@@ -70,7 +70,7 @@ Sifre hatalı hatasını alıyoruz. Peki ne oluyor burada!!!
 
 Bir web sayfası yüklendiğinde aslında html dosyasındaki javascript kodlarından daha fazlası yüklenir. Resimler, belgeler, videolar vs. Aynı zamanda web sayfasının kullanacağı javascript dosyaları! Yani ".js" uzantılı dosyalar. Bizim burada yapmamız gereken web sayfası ile birlikte inen diğer dosyaları yani ".js" uzantılı dosyaları incelememiz gerekiyor.
 
-![hackthis-javascript-3](/HackThis/resimler/hackthis-javascript-3.png)
+![hackthis-javascript-3](/assets/hackthis/hackthis-javascript-3.png)
 
 Bu inen js dosyalarından "main.js" javascript dosyasının içinde bir satırlık kod.
 
@@ -145,4 +145,4 @@ Bu fonksiyon web sayfasındaki bütün değişkenleri listeler. Konsoldan bunu �
 Değişkenler aslında daha fazla. Ben gerekli olan kısmı yazdım.  
 Artık değişkenleri biliyoruz. Buradai a b c d p hemen gözümüze çarpıyor. Bunları sırayla konsoldan yazdırarakta bulabiliriz.
 
-![hackthis-javascript-5](/HackThis/resimler/hackthis-javascript-5.png)
+![hackthis-javascript-5](/assets/hackthis/hackthis-javascript-5.png)
